@@ -1,21 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const userAuth = require("../middleware/userAuth");
+const authService = require("../services/authService");
 
-router.get("/", (req, res) => {
-    res.status(200).json("Hello world");
-});
-
-router.post("/register", (req, res) => {
-    res.status(200).json("Registered user");
-});
-
-router.post("/login", (req, res) => {
-    res.status(200).json("Login user");
-});
-
+router.post("/register", userAuth.validateRegistrationDetails, authService.register);
+router.post("/login", authService.login);
 router.post("/logout", (req, res) => {
     // Don't know if necessary
 });
-
 
 module.exports = router;
