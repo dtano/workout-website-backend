@@ -14,8 +14,16 @@ app.use(express.json());
 
 // Setup routes
 const authController = require("./controllers/authController");
+const userController = require("./controllers/userController");
+const workoutController = require("./controllers/workoutController");
+const workoutEventController = require("./controllers/workoutEventController");
+const weightHistoryController = require("./controllers/weightHistoryController");
 
 app.use("/api/auth", authController);
+app.use("/api/user", userController);
+app.use("/api/workout", workoutController);
+app.use("/api/workout/event", workoutEventController);
+app.use("/api/weight", weightHistoryController);
 
 // Sync db
 const db = require("./models");
