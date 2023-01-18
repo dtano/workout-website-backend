@@ -60,7 +60,6 @@ const validateUpdateDetails = async (req, res, next) => {
 
         // Check if the user inputted old password is equal to the current password saved in the db
         if(req.body.password && req.body.oldPassword){
-            console.log(user.password);
             const doPasswordsMatch = await bcrypt.compare(req.body.oldPassword, user.password);
             if(!doPasswordsMatch){
                 return res.status(400).json("Can't update user since the old password does not match current password");

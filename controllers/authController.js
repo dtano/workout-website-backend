@@ -35,22 +35,25 @@ const login = async (req, res) => {
     try {
         const {email, password} = req.body;
 
-        const user = await User.findOne({email});
-
-        if(user){
-            const doPasswordsMatch = await bcrypt.compare(password, user.password);
-            if(doPasswordsMatch){
-                let token = signJwtToken(user.id, res);
-                return res.status(201).json({
-                    id: user.id,
-                    firstName: user.first_name,
-                    lastName: user.last_name,
-                    email: user.email,
-                    birthDate: user.birth_date
-                });
-            }else{
-                return res.status(401).json("Authentication failed");
+        const user = await User.findOne({
+            where: {
+                email: email
             }
+        });
+        if(!user) return res.status(409).json("User not found");
+
+        const doPasswordsMatch = await bcrypt.compare(password, user.password);
+        if(doPasswordsMatch){
+            let token = signJwtToken(user.id, res);
+            return res.status(201).json({
+                id: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                birthDate: user.birth_date
+            });
+        }else{
+            return res.status(401).json("Authentication failed");
         }
     }catch(err){
         console.log(err.message);
