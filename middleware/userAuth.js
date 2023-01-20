@@ -76,7 +76,27 @@ const validateUpdateDetails = async (req, res, next) => {
     }
 }
 
+const doesUserExist = async (req, res, next) => {
+    try {
+        console.log(req.params.userId);
+        const user = await User.findOne({
+            where: {
+                id: req.params.userId
+            }
+        });
+
+        if(!user) {
+            return res.status(409).json(`User with id ${req.params.userId} does not exist`);
+        }
+
+        next();
+    }catch(err){
+        return res.status(409).json(err.message);
+    }
+}
+
 module.exports = {
     validateRegistrationDetails,
-    validateUpdateDetails
+    validateUpdateDetails,
+    doesUserExist
 }

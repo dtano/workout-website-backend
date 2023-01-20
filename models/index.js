@@ -52,7 +52,7 @@ db.workouts.belongsToMany(db.users, {
 db.users.hasMany(db.weightHistory, { as: "weightChanges"});
 db.weightHistory.belongsTo(db.users, {
     foreignKey: "userId",
-    as: "tutorial",
+    as: "user",
 });
 
 module.exports = db;
