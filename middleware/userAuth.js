@@ -78,7 +78,6 @@ const validateUpdateDetails = async (req, res, next) => {
 
 const doesUserExist = async (req, res, next) => {
     try {
-        console.log(req.params.userId);
         const user = await User.findOne({
             where: {
                 id: req.params.userId

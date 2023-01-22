@@ -1,14 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const userWorkoutController = require("../controllers/workoutEventController");
+const userAuth = require("../middleware/userAuth");
 
-router.get("/:userId", (req, res) => {
-    // Get all workout events that a user with the given id has done
-    res.status(200).json("Workout history for user: " + req.params.userId);
-});
-
-router.post("/:userId", (req, res) => {
-    // Create new instance of a workout event
-    res.status(200).json("Create new workout event for user " + req.params.userId);
-});
+router.get("/:userId", userAuth.doesUserExist, userWorkoutController.getAllUserWorkouts);
+router.post("/:userId", userAuth.doesUserExist, userWorkoutController.createWorkoutEvent);
 
 module.exports = router;

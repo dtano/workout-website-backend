@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const workoutController = require("../controllers/workoutController");
 
-router.get("/:id", (req, res) => {
-    console.log("Get workout by workout id");
-    // Should return workout details, and each exercise that it has
-    res.status(200).json(`Get workout ${req.params.id}`);
-});
+router.get("/:id", workoutController.getWorkout);
+router.get("/", workoutController.getAllWorkouts);
 
 module.exports = router;
