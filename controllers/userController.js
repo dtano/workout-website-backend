@@ -48,8 +48,6 @@ const updateUser = async (req, res, id) => {
         
         // Then remove any empty properties
         const cleanedUpdateDetails = objectUtils.clean(updateDetails);
-        console.log("Body to update", cleanedUpdateDetails);
-        console.log("User id: ", id);
         const updatedRows = await User.update(
             cleanedUpdateDetails,
             {where: {id: id}}

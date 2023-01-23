@@ -15,7 +15,7 @@ const getCurrentWeight = async (req, res) => {
                 ['date_added', 'DESC']
             ]
         });
-        console.log(weightHistory);
+      
         if(!weightHistory){
             return res.status(200).json(0);
         }
@@ -37,10 +37,9 @@ const getWeightHistory = async (req, res) => {
                 userId: userId
             },
             order: [
-                ['date_added', 'DESC']
+                ['date_added', 'ASC']
             ]
         });
-        console.log(weightHistory);
 
         return res.status(200).json(weightHistory);
     }catch(err){
@@ -75,7 +74,6 @@ const updateWeightHistory = async (req, res) => {
             userId: req.params.userId
         }
 
-        console.log(weightData);
         const weightRecord = await WeightHistory.create(weightData);
         if(!weightRecord) throw new Error("Failed to create weight record");
 

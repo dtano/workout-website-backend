@@ -30,7 +30,6 @@ const validateRegistrationDetails = async (req, res, next) => {
             return res.status(409).json("An account with the given email already exists");
         }
 
-        console.log("Passed all registration validation checks");
         next();
     }catch(err){
         return res.json(409).send("Registration failed");
