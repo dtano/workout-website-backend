@@ -4,9 +4,9 @@ const User = db.users;
 const Workout = db.workouts;
 const UserWorkout = db.userWorkouts;
 
-const getAllUserWorkouts = (req, res) => {
+const getAllUserWorkouts = async (req, res) => {
     try {
-        const userWorkoutHistory = UserWorkout.findAll({
+        const userWorkoutHistory = await UserWorkout.findAll({
             where: {
                 user_id: req.params.userId
             },
@@ -19,10 +19,10 @@ const getAllUserWorkouts = (req, res) => {
     }
 }
 
-const createWorkoutEvent = (req, res) => {
+const createWorkoutEvent = async (req, res) => {
     try{
         // Check if given workoutId exists
-        const workout = Workout.findOne({
+        const workout = await Workout.findOne({
             where: {
                 id: req.body.workoutId
             }
@@ -35,7 +35,7 @@ const createWorkoutEvent = (req, res) => {
             date_completed: new Date()
         }
 
-        const userWorkoutEvent = UserWorkout.create(creationData);
+        const userWorkoutEvent = await UserWorkout.create(creationData);
         return res.status(200).json(userWorkoutEvent);
     }catch(err){
         console.log(err);

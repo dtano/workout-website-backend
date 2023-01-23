@@ -1,14 +1,13 @@
 const db = require("../models");
 
-// const WorkoutExercise = db.workoutExercises;
 const Workout = db.workouts;
 const Exercise = db.exercises;
 
-const getWorkout = (req, res) => {
+const getWorkout = async (req, res) => {
     try{
         const workoutId = req.params.id;
 
-        const workout = Workout.findOne({
+        const workout = await Workout.findOne({
             where: {
                 id: workoutId
             },
@@ -27,13 +26,16 @@ const getWorkout = (req, res) => {
     }
 }
 
-const getAllWorkouts = (req, res) => {
+const getAllWorkouts = async (req, res) => {
     try{
-        const allWorkouts = Workout.findAll({
+        const allWorkouts = await Workout.findAll({
+            order: [
+                ["difficulty_level", "ASC"]
+            ],
             include: [
                 {
                     model: Exercise,
-                    through: { attributes: [] }
+                    through: { attributes: [] },
                 }
             ]
         });

@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const dbConfig = require("../configs/databaseConfig");
+const dbConfig = require("../config/dbConfig");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
@@ -28,23 +28,35 @@ db.weightHistory = require("./WeightHistory")(sequelize, Sequelize);
 
 // Exercise-Workout many to many relationship
 db.exercises.belongsToMany(db.workouts, {
-    through: db.workoutExercises,
+    through: {
+        model: db.workoutExercises,
+        unique: false
+    },
     foreignKey: "exercise_id"
 });
 
 db.workouts.belongsToMany(db.exercises, {
-    through: db.workoutExercises,
+    through: {
+        model: db.workoutExercises,
+        unique: false
+    },
     foreignKey: "workout_id"
 });
 
 // User-Workout many to many relationship
 db.users.belongsToMany(db.workouts, {
-    through: db.userWorkouts,
+    through: {
+        model: db.userWorkouts,
+        unique: false
+    },
     foreignKey: "user_id"
 });
 
 db.workouts.belongsToMany(db.users, {
-    through: db.userWorkouts,
+    through: {
+        model: db.userWorkouts,
+        unique: false
+    },
     foreignKey: "workout_id"
 });
 

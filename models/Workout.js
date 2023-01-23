@@ -12,6 +12,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         duration: {
             type: Sequelize.INTEGER
+        },
+        difficulty_level: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
     });
 
