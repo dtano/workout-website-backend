@@ -28,6 +28,9 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING(64),
             allowNull: false
+        },
+        height: {
+            type: Sequelize.INTEGER
         }
     });
 

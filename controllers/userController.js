@@ -37,13 +37,22 @@ const updateUser = async (req, res, id) => {
         if(req.body.password){
             req.body.password = await bcrypt.hash(req.body.password, 10);
         }
+
+        if(req.body.height <= 0){
+            return res.status(400).json("Height cannot be 0 or lower");
+        }
+
+        if(req.body.height >= 300){
+            return res.status(400).json("Height cannot be greater than 300 cm");
+        }
         
         const updateDetails = {
             first_name: req.body.firstName,
             last_name: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
-            birth_date: req.body.birthDate
+            birth_date: req.body.birthDate,
+            height: req.body.height
         }
         
         // Then remove any empty properties

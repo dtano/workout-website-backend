@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 const User = db.users;
 const registrationRequiredFields = ["firstName", "lastName", "birthDate", "password", "confirmPassword", "email"];
-const updateAllowedFields = ["firstName", "lastName", "birthDate", "password", "oldPassword", "email"];
+const updateAllowedFields = ["firstName", "lastName", "birthDate", "password", "oldPassword", "email", "height"];
 
 const validateRegistrationDetails = async (req, res, next) => {
     try{
