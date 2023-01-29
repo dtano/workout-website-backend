@@ -14,7 +14,7 @@ module.exports = {
     },
     {
       name: "Intermediate",
-      description: "For those who seek a bigger challenge. Get your sweat on with this 30 minute full-body workout! Suitable to be done at home.",
+      description: "For those who seek a bigger challenge. Get your sweat on with this 20 minute full-body workout! Suitable to be done at home.",
       calories_burnt: 340,
       duration: 1200,
       difficulty_level: 2,
@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       name: "Advanced",
-      description: "A 30 minute workout that will surely test your fitness! Take this challenge on, and see if you have what it takes.",
+      description: "A 30 minute full-body workout that will surely test your fitness! Take this challenge on, and see if you have what it takes.",
       calories_burnt: 450,
       duration: 1800,
       difficulty_level: 3,

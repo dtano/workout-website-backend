@@ -35,7 +35,7 @@ module.exports = {
       },
       {
         name: "Side Plank (Right)",
-        image_name: "Plank",
+        image_name: "SidePlank",
         createdAt: new Date(),
         updatedAt: new Date()
       },
