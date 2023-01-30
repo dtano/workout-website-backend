@@ -16,6 +16,7 @@ const register = async (req, res) => {
             birth_date: new Date(birthDate)
         }
 
+        
         const user = await User.create(userData);
         if(user){
             let token = signJwtToken(user.id, res);

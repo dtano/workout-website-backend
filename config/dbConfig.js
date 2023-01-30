@@ -1,7 +1,7 @@
 const dbConfig = {
     HOST: "localhost",
     USER: "postgres",
-    PASSWORD: "Higuain123",
+    PASSWORD: "password",
     DB: "workout_web_db",
     dialect: "postgres",
     pool: {
